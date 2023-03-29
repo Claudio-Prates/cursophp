@@ -1,37 +1,23 @@
-// URL da API do Banco Central
-$url = 'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata';
+<pre>
 
-// Defina a chave de acesso à API
-$chave = 'sua-chave-de-acesso';
 
-// Defina os parâmetros da consulta
-$parametros = '?$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao';
+<?php 
 
-// Crie a URL completa da consulta
-$urlConsulta = $url . $parametros . '&$top=100&$orderby=dataHoraCotacao%20desc&$filter=tipoBoletim%20eq%20%27Fechamento%27%20and%20moeda%20eq%20%27USD%27';
+$inicio = date("m-d-Y",strtotime("-7 days"));
+$fim = date("m-d-Y");
 
-// Inicie a conexão com a API
-$ch = curl_init($urlConsulta);
 
-// Defina as opções de conexão
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-  'Content-Type: application/json',
-  'Authorization: Token ' . $chave
-));
+$url = 'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial=\''.$inicio.'\'&@dataFinalCotacao=\''.$fim.'\'&$top=1&$orderby=dataHoraCotacao%20desc&$format=json&$select=cotacaoCompra,dataHoraCotacao';
 
-// Envie a solicitação e obtenha a resposta
-$resposta = curl_exec($ch);
+  $dados= json_decode(file_get_contents($url),true);
 
-// Analise a resposta em formato JSON
-$dados = json_decode($resposta);
+  //var_dump($dados);
 
-// Trabalhe com os dados
-foreach ($dados->value as $cotacao) {
-  echo 'Compra: ' . $cotacao->cotacaoCompra . '<br>';
-  echo 'Venda: ' . $cotacao->cotacaoVenda . '<br>';
-  echo 'Data/Hora: ' . $cotacao->dataHoraCotacao . '<br><br>';
-}
 
-// Feche a conexão com a API
-curl_close($ch);
+  $cotação = $dados["value"][0]["cotacaoCompra"];
+
+  echo "A cotação foi $cotação";
+
+?>
+
+</pre>
