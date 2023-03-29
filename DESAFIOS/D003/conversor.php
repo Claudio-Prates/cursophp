@@ -13,7 +13,7 @@
     <?php
 
         // Cotação copiada do Google
-        $cotacao = 5.33;
+        $cotacao =5.19;
 
         // Quantos $$ você Tem?
 
