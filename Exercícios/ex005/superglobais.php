@@ -43,7 +43,13 @@
             //     echo "<br> $c -> <br>";
             // }
 
-            
+            echo "<h1> SuperGlobal SERVER </h1>";
+            var_dump($_SERVER);
+
+            echo "<h1> SuperGlobal GLOBALS </h1>";
+            var_dump($GLOBALS);
+
+
             ?>
 
 
