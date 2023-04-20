@@ -8,13 +8,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <?php
 
+    // Área de declarações
+        $numero = $_GET['num'] ?? 1;
+    
+    ?>
 
     <main>
         <h1>Informe um número:</h1>
-        <form action="" method="get">
+        <form action="<?=$_SERVER['PHP_SELF']?>" method="get">
         <label for="num">Número</label>
-        <input type="number" name="num" id="">
+        <input type="number" name="num" id="num" <?=$numero?>">
         <input type="submit" value="Calcular Raízes">
         </form>
 
@@ -24,14 +29,16 @@
         <h2>Resultado Final</h2>
         <?php 
 
-            $numero = $_GET['num'] ?? 0;
-            $raiz_quadrada = sqrt($numero);
+            
+            
+            $rq= sqrt($numero);
+            $rc = pow($numero, 1/3);
 
             echo "Analisando o <strong>número $numero</strong>, temos:";
 
-            echo "<ul><li>A sua raíz quadrada é <strong>".number_format($raiz_quadrada,3,",",".")."</strong></li></ul>";
+            echo "<ul><li>A sua raíz quadrada é <strong>".number_format($rq,2,",",".")."</strong></li></ul>";
 
-            echo ""
+            echo "<ul><li> A sua raíz cúbica é <strong>".number_format($rc,2,",",".")." </strong></li></ul>"
         ?>
 
     </section>
