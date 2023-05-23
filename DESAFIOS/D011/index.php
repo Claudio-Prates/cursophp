@@ -13,7 +13,7 @@
                 $novo_valor = $valor * (1 + $porcentagem/ 100);
                 
             }
-            ?>  
+            ?>   
     <main>
     <h1>Reajustador de Preço</h1>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
