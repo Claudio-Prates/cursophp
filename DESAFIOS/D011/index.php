@@ -1,20 +1,14 @@
-<html>
-  <head>
-    <title>Reajustador de Preço</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    
-  <?php
-            
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $valor = $_POST["valor"];
-                $porcentagem = $_POST["porcentagem"];
-                $novo_valor = $valor * (1 + $porcentagem/ 100);
-                
-            }
-            ?>   
-    <main>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio PHP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
     <h1>Reajustador de Preço</h1>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
       <label for="valor">Preço do Produto (R$)</label>
@@ -26,21 +20,5 @@
       <input type="submit" name="submit" value="Reajustar">
     </form>
     </main> 
-
-    <section>
-    <h2>Resultado do Reajuste</h2>
-        <?php
-            
-        
-            echo "O Produto que custava <strong> R$ " . number_format($valor, 2, ',', '.') . "</strong>, 
-            com um aumento de <strong>" . $porcentagem . "%  de aumento </strong>, vai passar a custar R$ <strong>" . number_format($novo_valor, 2, ',', '.') ."</strong>.";
-        
-        ?>
-    <script>
-      function updateTextInput(val) {
-        document.getElementById('porcentagem_text').value = val + "%";
-      }
-    </script>
-</section>
-  </body>
+</body>
 </html>
